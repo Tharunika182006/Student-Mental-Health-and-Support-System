@@ -118,54 +118,44 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 - User takes Assessment
 - Assessment generates Report
 - Admin manages Resources
-- ```text
-+-------------+
-|    User     |
-+-------------+
-| user_id PK  |
-| name        |
-| email       |
-| password    |
-| role        |
-+-------------+
-       |
-       | 1
-       |
-       | M
-+-------------+
-| Assessment  |
-+-------------+
-| assess_idPK |
-| user_id FK  |
-| score       |
-| date        |
-+-------------+
-       |
-       | 1
-       |
-       | 1
-+-------------+
-|   Report    |
-+-------------+
-| report_idPK |
-| assess_idFK |
-| result      |
-+-------------+
-
-+-------------+
-|  Resource   |
-+-------------+
-| resource_id |
-| title       |
-| description |
-+-------------+
-```
 
 Admin manages Resources
 Student accesses Resources
 Student takes Assessments
 Assessment generates Reports
 ---
+## Use Case Diagram
+
+```text
+                    +----------------+
+                    |     Student    |
+                    +----------------+
+                           |
+       --------------------------------------------
+       |            |           |         |        |
+       v            v           v         v        v
+ +-----------+ +---------+ +----------+ +---------+ +--------------+
+ | Register  | | Login   | | Profile  | | Take    | | View Mental  |
+ |           | |         | | Update   | | Assessment | Health Resources |
+ +-----------+ +---------+ +----------+ +---------+ +--------------+
+                                            |
+                                            v
+                                     +-------------+
+                                     | View Report |
+                                     +-------------+
+
+
+                    +----------------+
+                    |     Admin      |
+                    +----------------+
+                           |
+      ---------------------------------------------
+      |                 |                 |
+      v                 v                 v
++-------------+ +---------------+ +---------------+
+| Manage Users| | Manage Content| | View Reports  |
++-------------+ +---------------+ +---------------+
+```
 
 ###  Database Schema Creation
 
