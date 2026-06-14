@@ -118,7 +118,51 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 - User takes Assessment
 - Assessment generates Report
 - Admin manages Resources
++-------------+
+|    User     |
++-------------+
+| user_id PK  |
+| name        |
+| email       |
+| password    |
+| role        |
++-------------+
+       |
+       | 1
+       |
+       | M
++-------------+
+| Assessment  |
++-------------+
+| assess_idPK |
+| user_id FK  |
+| score       |
+| date        |
++-------------+
+       |
+       | 1
+       |
+       | 1
++-------------+
+|   Report    |
++-------------+
+| report_idPK |
+| assess_idFK |
+| result      |
++-------------+
 
++-------------+
+|  Resource   |
++-------------+
+| resource_id |
+| title       |
+| description |
++-------------+
+
+Admin manages Resources
+Student accesses Resources
+Student takes Assessments
+Assessment generates Reports
 ---
 
 ###  Database Schema Creation
