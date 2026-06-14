@@ -10,7 +10,6 @@ The Student Mental Health and Support System is a web-based application designed
 ## Development Progress
 
 ###  Project Title Finalization
-**Deliverable:** Approved Project Title
 
 - Selected project domain: Mental Health
 - Finalized project title
@@ -19,7 +18,6 @@ The Student Mental Health and Support System is a web-based application designed
 ---
 
 ###  Requirement Gathering
-**Deliverable:** Problem Statement
 
 #### Problem Statement
 Students often face stress, anxiety, academic pressure, and emotional challenges. Many hesitate to seek professional help due to accessibility and privacy concerns.
@@ -35,7 +33,6 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 ---
 
 ###  Objective Definition
-**Deliverable:** Project Objectives
 
 #### Objectives
 1. Provide mental health support for students.
@@ -47,7 +44,6 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 ---
 
 ###  User & Module Identification
-**Deliverable:** Module List
 
 #### Users
 - Student
@@ -64,7 +60,6 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 ---
 
 ### Use Case Diagram Preparation
-**Deliverable:** Use Cases
 
 #### Student Use Cases
 - Register
@@ -82,7 +77,6 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 ---
 
 ###  Database Requirement Analysis
-**Deliverable:** Table List
 
 #### Database Tables
 
@@ -113,7 +107,6 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 ---
 
 ###  ER Diagram Design
-**Deliverable:** ER Diagram
 
 #### Entities
 - User
@@ -129,7 +122,6 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 ---
 
 ###  Database Schema Creation
-**Deliverable:** SQL Schema
 
 #### Tables Created
 - users
@@ -144,7 +136,6 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 ---
 
 ###  UI Wireframe Design
-**Deliverable:** Page Layouts
 
 #### Planned Screens
 1. Login Page
@@ -157,8 +148,6 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 ---
 
 ### Login & Dashboard UI Design
-**Deliverable:** UI Screens
-
 #### Designed Components
 - Login Form
 - Dashboard Cards
@@ -168,7 +157,6 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 ---
 
 ### Navigation & Form Design
-**Deliverable:** UI Prototype
 
 #### Navigation Features
 - Sidebar Menu
@@ -178,7 +166,6 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 ---
 
 ###  Design Review
-**Deliverable:** Design Approval
 
 #### Review Checklist
 - UI Consistency
@@ -189,7 +176,6 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 ---
 
 ###  Frontend Environment Setup
-**Deliverable:** React Project Setup
 
 #### Setup Tasks
 - Install Node.js
@@ -200,7 +186,6 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 ---
 
 ###  Login Page Development
-**Deliverable:** Login Module
 
 #### Features
 - Email Validation
@@ -211,7 +196,6 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 ---
 
 ### Registration Page Development
-**Deliverable:** Registration Module
 
 #### Features
 - Student Registration Form
@@ -222,7 +206,6 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 ---
 
 ###  Dashboard Development
-**Deliverable:** Dashboard UI
 
 #### Dashboard Components
 - Welcome Section
@@ -233,7 +216,7 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 ---
 
 ###  CRUD Form Development
-**Deliverable:** Forms Completed
+
 
 #### CRUD Operations
 - Create Assessment
@@ -279,6 +262,3 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 
 ---
 
-## Author
-
-Tharunika
