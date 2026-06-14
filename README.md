@@ -118,6 +118,7 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 - User takes Assessment
 - Assessment generates Report
 - Admin manages Resources
+- ```text
 +-------------+
 |    User     |
 +-------------+
@@ -158,6 +159,7 @@ Students often face stress, anxiety, academic pressure, and emotional challenges
 | title       |
 | description |
 +-------------+
+```
 
 Admin manages Resources
 Student accesses Resources
