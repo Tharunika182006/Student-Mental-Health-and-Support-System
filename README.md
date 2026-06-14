@@ -170,6 +170,45 @@ Assessment generates Reports
 - Foreign Key between Assessments and Reports
 
 ---
+## Database Schema
+
+```sql
+CREATE DATABASE MentalHealthDB;
+
+USE MentalHealthDB;
+
+CREATE TABLE Users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(20) DEFAULT 'STUDENT'
+);
+
+CREATE TABLE Assessments (
+    assessment_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    score INT,
+    assessment_date DATE,
+    FOREIGN KEY (user_id)
+    REFERENCES Users(user_id)
+);
+
+CREATE TABLE Reports (
+    report_id INT AUTO_INCREMENT PRIMARY KEY,
+    assessment_id INT,
+    result VARCHAR(100),
+    generated_date DATE,
+    FOREIGN KEY (assessment_id)
+    REFERENCES Assessments(assessment_id)
+);
+
+CREATE TABLE Resources (
+    resource_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(150),
+    description TEXT
+);
+```
 
 ###  UI Wireframe Design
 
