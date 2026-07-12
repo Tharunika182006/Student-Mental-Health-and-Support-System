@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mood Tracker - MindFlow</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background:#f5f3ff;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .container{
+            background:white;
+            padding:40px;
+            border-radius:15px;
+            width:400px;
+            text-align:center;
+            box-shadow:0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h2{
+            color:#6d28d9;
+        }
+
+        select{
+            width:100%;
+            padding:12px;
+            margin-top:20px;
+            border-radius:8px;
+        }
+
+        button{
+            width:100%;
+            margin-top:20px;
+            padding:12px;
+            background:#7c3aed;
+            color:white;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#6d28d9;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>How are you feeling today?</h2>
+
+    <form method="POST">
+
+        <select name="mood" required>
+
+            <option value="">Select Mood</option>
+
+            <option value="Happy">😊 Happy</option>
+            <option value="Calm">😌 Calm</option>
+            <option value="Neutral">😐 Neutral</option>
+            <option value="Sad">😔 Sad</option>
+            <option value="Stressed">😣 Stressed</option>
+            <option value="Anxious">😰 Anxious</option>
+
+        </select>
+
+        <button type="submit">Save Mood</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
+

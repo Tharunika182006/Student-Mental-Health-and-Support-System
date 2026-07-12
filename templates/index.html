@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindFlow - AI-Powered Student Mental Health & Digital Wellbeing</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #6366F1;
+            --secondary-color: #8B5CF6;
+            --accent-color: #3B82F6;
+            --success-color: #10B981;
+            --danger-color: #EF4444;
+            --bg-light: #F8FAFC;
+            --bg-lighter: #F1F5F9;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* ============ NAVBAR ============ */
+        .navbar {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .navbar-brand i {
+            font-size: 1.8rem;
+        }
+
+        .nav-link {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        /* Button ripple support */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+        .nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+        .btn-login {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1.25rem;
+        }
+
+        .btn-login:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-register {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.5rem 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -5px rgba(99, 102, 241, 0.4);
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 60px 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1), transparent);
+            border-radius: 50%;
+            top: -100px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1), transparent);
+            border-radius: 50%;
+            bottom: -50px;
+            right: -50px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-dark), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            line-height: 1.6;
+            animation: slideInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            animation: slideInUp 0.8s ease-out 0.4s both;
+            margin-bottom: 4rem;
+        }
+
+        .btn-primary-large {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            color: white;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary-large:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -5px rgba(99, 102, 241, 0.4);
+            color: white;
+        }
+
+        .btn-secondary-large {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: white;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary-large:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image svg {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+        }
+
+        /* ============ SECTION STYLES ============ */
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            line-height: 1.8;
+        }
+
+        /* ============ FEATURES SECTION ============ */
+        .features-section {
+            background: white;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px -5px rgba(99, 102, 241, 0.15);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .feature-card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+
+        /* ============ STATS SECTION ============ */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .stats-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .stat-card {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        /* ============ HOW IT WORKS SECTION ============ */
+        .how-it-works {
+            background: white;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .step-card {
+            position: relative;
+            background: var(--bg-lighter);
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .step-card:hover {
+            border-color: var(--primary-color);
+            background: white;
+            box-shadow: 0 15px 35px -5px rgba(99, 102, 241, 0.15);
+            transform: translateY(-8px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover .step-number {
+            transform: scale(1.15);
+        }
+
+        .step-card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .steps-connector {
+            display: none;
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin: -1rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .steps-container {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            .steps-connector {
+                display: block;
+                grid-column: auto;
+            }
+        }
+
+        /* ============ TESTIMONIALS SECTION ============ */
+        .testimonials-section {
+            background: white;
+        }
+
+        .testimonial-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 35px -5px rgba(99, 102, 241, 0.1);
+        }
+
+        .stars {
+            color: #FBBF24;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .student-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .student-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .student-details h6 {
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .student-details p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* ============ ABOUT SECTION ============ */
+        .about-section {
+            background: linear-gradient(135deg, var(--bg-light), white);
+        }
+
+        .about-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .about-content p {
+            color: var(--text-muted);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .about-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .about-list li {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .about-list i {
+            color: var(--success-color);
+            font-size: 1.5rem;
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+
+        .about-list span {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ============ CTA SECTION ============ */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 0;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -50px;
+            right: -50px;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            bottom: -30px;
+            left: -30px;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .cta-content p {
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-cta {
+            padding: 1rem 2.5rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.3);
+            color: var(--primary-color);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h5 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: white;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+            padding-left: 0.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(99, 102, 241, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-image {
+                margin-top: 3rem;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .feature-card {
+                padding: 1.8rem;
+            }
+
+            .about-content {
+                padding: 2rem;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-connector {
+                display: none !important;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar {
+                padding: 0.75rem 0;
+            }
+
+            .hero-buttons {
+                gap: 0.75rem;
+            }
+
+            .btn-primary-large,
+            .btn-secondary-large {
+                width: 100%;
+                padding: 0.9rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .steps-container {
+                gap: 1.5rem;
+            }
+
+            .step-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .cta-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* ============ SCROLL ANIMATIONS ============ */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInLeftAnim 0.6s ease-out forwards;
+        }
+
+        @keyframes slideInLeftAnim {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            animation: slideInRightAnim 0.6s ease-out forwards;
+        }
+
+        @keyframes slideInRightAnim {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            animation: scaleInAnim 0.6s ease-out forwards;
+        }
+
+        @keyframes scaleInAnim {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Stagger animation */
+        .stagger-1 {
+            animation-delay: 0.1s;
+        }
+        .stagger-2 {
+            animation-delay: 0.2s;
+        }
+        .stagger-3 {
+            animation-delay: 0.3s;
+        }
+        .stagger-4 {
+            animation-delay: 0.4s;
+        }
+        .stagger-5 {
+            animation-delay: 0.5s;
+        }
+        .stagger-6 {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+<body>
+    <!-- ============ NAVBAR ============ -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-lg">
+            <a class="navbar-brand" href="#home">
+                <i class="bi bi-heart-pulse"></i>
+                MindFlow
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="bi bi-list"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-3 align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works">How It Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/login" class="btn btn-login me-2">Login</a>
+                        <a href="/register" class="btn btn-register">Sign Up</a>
+                    </li>
+        
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============ HERO SECTION ============ -->
+    <section class="hero" id="home">
+        <div class="container-lg">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1>Empowering Student Mental Health Through AI and Digital Wellbeing</h1>
+                    <p>MindFlow combines intelligent mood tracking, personalized AI counselling, and focus optimization to support your mental health journey. Take control of your wellbeing today.</p>
+                    <div class="hero-buttons">
+                        <a href="/register" class="btn btn-primary-large"></a>
+    Get Started
+</a>
+                        <button class="btn btn-secondary-large" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">Learn More</button>
+                    </div>
+                </div>
+                <div class="col-lg-6 hero-image">
+                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Decorative illustration -->
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6366F1;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Background circle -->
+                        <circle cx="200" cy="200" r="180" fill="url(#grad1)" opacity="0.1"/>
+                        <!-- Main illustration - Brain/Mind -->
+                        <circle cx="200" cy="150" r="60" fill="url(#grad1)"/>
+                        <circle cx="160" cy="140" r="15" fill="white" opacity="0.6"/>
+                        <circle cx="240" cy="140" r="15" fill="white" opacity="0.6"/>
+                        <!-- Heart -->
+                        <path d="M200 240 Q180 260 170 260 Q150 260 150 240 Q150 220 200 180 Q250 220 250 240 Q250 260 230 260 Q220 260 200 240" fill="#10B981"/>
+                        <!-- Progress indicators -->
+                        <circle cx="120" cy="200" r="8" fill="#3B82F6"/>
+                        <circle cx="120" cy="230" r="8" fill="#3B82F6" opacity="0.5"/>
+                        <circle cx="280" cy="200" r="8" fill="#3B82F6"/>
+                        <circle cx="280" cy="230" r="8" fill="#3B82F6" opacity="0.5"/>
+                        <!-- Connecting lines -->
+                        <line x1="128" y1="200" x2="160" y2="200" stroke="#3B82F6" stroke-width="2" opacity="0.5"/>
+                        <line x1="240" y1="200" x2="272" y2="200" stroke="#3B82F6" stroke-width="2" opacity="0.5"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FEATURES SECTION ============ -->
+    <section class="section features-section" id="features">
+        <div class="container-lg">
+            <h2 class="section-title">Powerful Features</h2>
+            <p class="section-subtitle">Everything you need to support your mental health and digital wellbeing journey</p>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card fade-in stagger-1">
+                        <div class="feature-icon">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <h4>Mood Tracking</h4>
+                        <p>Daily mood logging with intelligent insights. Track patterns over time and understand what factors influence your emotional wellbeing.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card fade-in stagger-2">
+                        <div class="feature-icon">
+                            <i class="bi bi-chat-dots"></i>
+                        </div>
+                        <h4>AI Counsellor</h4>
+                        <p>24/7 access to personalized AI-powered counselling support. Get evidence-based coping strategies and emotional support whenever you need it.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card fade-in stagger-3">
+                        <div class="feature-icon">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+                        <h4>Stress Assessment</h4>
+                        <p>Comprehensive stress level evaluation using multi-dimensional assessment tools. Identify stress triggers and develop personalized management plans.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card fade-in stagger-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-hourglass-split"></i>
+                        </div>
+                        <h4>Focus Sessions</h4>
+                        <p>Customizable Pomodoro-style sessions with mindfulness breaks. Stay productive while maintaining mental wellbeing with guided focus intervals.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card fade-in stagger-5">
+                        <div class="feature-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h4>Website Blocker</h4>
+                        <p>Smart distraction blocker extension. Customize your own blocklist to eliminate digital distractions during study and focus sessions.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card fade-in stagger-6">
+                        <div class="feature-icon">
+                            <i class="bi bi-bar-chart-line"></i>
+                        </div>
+                        <h4>Progress Analytics</h4>
+                        <p>Visual dashboards with comprehensive insights into your wellbeing journey. Track improvements and celebrate your mental health milestones.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ STATS SECTION ============ -->
+    <section class="section stats-section">
+        <div class="container-lg">
+            <div class="row text-center">
+                <div class="col-md-6 col-lg-3">
+                    <div class="stat-card fade-in stagger-1">
+                        <span class="stat-number">45%</span>
+                        <span class="stat-label">Improved Focus</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="stat-card fade-in stagger-2">
+                        <span class="stat-number">62%</span>
+                        <span class="stat-label">Reduced Stress</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="stat-card fade-in stagger-3">
+                        <span class="stat-number">38%</span>
+                        <span class="stat-label">Better Productivity</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="stat-card fade-in stagger-4">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Personalized Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS SECTION ============ -->
+    <section class="section how-it-works" id="how-it-works">
+        <div class="container-lg">
+            <h2 class="section-title">Your Wellbeing Journey</h2>
+            <p class="section-subtitle">Simple, effective steps to transform your mental health and digital wellbeing</p>
+
+            <div class="steps-container">
+                <div class="step-card fade-in stagger-1">
+                    <div class="step-number">1</div>
+                    <h4>Track Mood</h4>
+                    <p>Log your daily emotions with just a tap. Our intuitive interface makes mood tracking quick and easy.</p>
+                </div>
+
+                <div class="steps-connector">
+                    <i class="bi bi-arrow-right"></i>
+                </div>
+
+                <div class="step-card fade-in stagger-2">
+                    <div class="step-number">2</div>
+                    <h4>Analyze Stress</h4>
+                    <p>Our AI analyzes your patterns to identify stress triggers and provides detailed insights.</p>
+                </div>
+
+                <div class="steps-connector">
+                    <i class="bi bi-arrow-right"></i>
+                </div>
+
+                <div class="step-card fade-in stagger-3">
+                    <div class="step-number">3</div>
+                    <h4>Get Guidance</h4>
+                    <p>Receive personalized AI counselling recommendations and evidence-based coping strategies.</p>
+                </div>
+
+                <div class="steps-connector">
+                    <i class="bi bi-arrow-right"></i>
+                </div>
+
+                <div class="step-card fade-in stagger-4">
+                    <div class="step-number">4</div>
+                    <h4>Focus Mode</h4>
+                    <p>Activate distraction blocking and mindfulness sessions to boost productivity.</p>
+                </div>
+
+                <div class="steps-connector">
+                    <i class="bi bi-arrow-right"></i>
+                </div>
+
+                <div class="step-card fade-in stagger-5">
+                    <div class="step-number">5</div>
+                    <h4>Improve Wellbeing</h4>
+                    <p>Watch your progress with detailed analytics and celebrate your mental health wins.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS SECTION ============ -->
+    <section class="section testimonials-section">
+        <div class="container-lg">
+            <h2 class="section-title">Student Success Stories</h2>
+            <p class="section-subtitle">Hear from students who've transformed their mental health with MindFlow</p>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-card fade-in stagger-1">
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="testimonial-text">"MindFlow has been a game-changer for my anxiety management. The mood tracking feature helps me identify patterns, and the AI counsellor provides support exactly when I need it most."</p>
+                        <div class="student-info">
+                            <div class="student-avatar">A</div>
+                            <div class="student-details">
+                                <h6>Arjun Sharma</h6>
+                                <p>Computer Science, Year 3</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-card fade-in stagger-2">
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="testimonial-text">"The focus sessions have completely transformed my productivity. Combined with the website blocker, I've managed to cut my social media usage by 70% and my grades have improved significantly."</p>
+                        <div class="student-info">
+                            <div class="student-avatar">P</div>
+                            <div class="student-details">
+                                <h6>Priya Patel</h6>
+                                <p>Business Management, Year 2</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-card fade-in stagger-3">
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="testimonial-text">"Having access to mental health support 24/7 has reduced my stress significantly. I no longer feel alone in my struggles, and the personalized insights help me make better choices for my wellbeing."</p>
+                        <div class="student-info">
+                            <div class="student-avatar">R</div>
+                            <div class="student-details">
+                                <h6>Rohan Kapoor</h6>
+                                <p>Electronics Engineering, Year 3</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ABOUT SECTION ============ -->
+    <section class="section about-section" id="about">
+        <div class="container-lg">
+            <h2 class="section-title mb-5">About This Project</h2>
+            <div class="about-content fade-in">
+                <h3>Addressing the Student Mental Health Crisis</h3>
+                <p>
+                    Student mental health has reached a critical point, with depression, anxiety, and stress-related disorders affecting nearly 40% of university students worldwide. Many lack access to timely mental health support, while others struggle with digital distraction impacting their academic performance and wellbeing.
+                </p>
+                <p>
+                    <strong>MindFlow</strong> is an innovative AI-powered solution designed specifically for students. By combining intelligent mood tracking, personalized AI counselling, stress assessment, focus optimization, and digital wellbeing tools, MindFlow creates a comprehensive support ecosystem that students can access anytime, anywhere.
+                </p>
+                <p>
+                    This final-year project demonstrates how artificial intelligence and thoughtful design can address real-world mental health challenges. Our platform empowers students to take control of their emotional wellbeing while improving academic performance through better focus and stress management.
+                </p>
+
+                <ul class="about-list">
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span><strong>Evidence-based approach:</strong> All features developed with psychological research and best practices in mind.</span>
+                    </li>
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span><strong>Privacy-first design:</strong> Student data security and privacy are paramount in every implementation.</span>
+                    </li>
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span><strong>User-centric:</strong> Developed with continuous student feedback and real-world testing.</span>
+                    </li>
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span><strong>Scalable technology:</strong> Built with modern AI and cloud technology for reliability and growth.</span>
+                    </li>
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span><strong>Holistic wellbeing:</strong> Addresses mental health, digital wellness, and academic productivity simultaneously.</span>
+                    </li>
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span><strong>Continuous improvement:</strong> Machine learning models adapt to each student's unique needs over time.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CTA SECTION ============ -->
+    <section class="cta-section">
+        <div class="container-lg">
+            <div class="cta-content fade-in">
+                <h2>Ready to Transform Your Mental Health?</h2>
+                <p>Join hundreds of students already using MindFlow to improve their wellbeing, reduce stress, and boost productivity. Start your journey today.</p>
+                <button class="btn btn-cta" data-bs-toggle="modal" data-bs-target="#signupModal">Create Your Account</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer id="contact">
+        <div class="container-lg">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h5>MindFlow</h5>
+                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem; line-height: 1.6;">
+                        Empowering students to take control of their mental health and digital wellbeing through intelligent technology.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" title="Twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h5>Features</h5>
+                    <ul>
+                        <li><a href="#">Mood Tracking</a></li>
+                        <li><a href="#">AI Counsellor</a></li>
+                        <li><a href="#">Stress Assessment</a></li>
+                        <li><a href="#">Focus Sessions</a></li>
+                        <li><a href="#">Website Blocker</a></li>
+                        <li><a href="#">Analytics</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li><a href="mailto:support@mindflow.edu"><i class="bi bi-envelope"></i> support@mindflow.edu</a></li>
+                        <li><a href="tel:+911234567890"><i class="bi bi-telephone"></i> +91 123-456-7890</a></li>
+                        <li><a href="#"><i class="bi bi-geo-alt"></i> Coimbatore, India</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 MindFlow - Student Mental Health Support System. All rights reserved. | Final Year Project</p>
+                <p>Designed with <i class="bi bi-heart-fill" style="color: var(--primary-color);"></i> for student wellbeing</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============ SIGNUP MODAL ============ -->
+    <div class="modal fade" id="signupModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0" style="background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border);">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Join MindFlow</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted mb-3">Start your mental health journey with us. Create your account in seconds.</p>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Full Name" style="border: 1px solid var(--border-color); padding: 0.75rem;">
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" placeholder="Email Address" style="border: 1px solid var(--border-color); padding: 0.75rem;">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" placeholder="Password" style="border: 1px solid var(--border-color); padding: 0.75rem;">
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select" style="border: 1px solid var(--border-color); padding: 0.75rem;">
+                            <option>Select Your Course</option>
+                            <option>Computer Science</option>
+                            <option>Engineering</option>
+                            <option>Business</option>
+                            <option>Arts & Humanities</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="terms">
+                        <label class="form-check-label text-muted" for="terms">
+                            I agree to the Terms of Service and Privacy Policy
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary-large" style="padding: 0.7rem 2rem;">Create Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // ============ SCROLL ANIMATIONS ============
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and animated elements
+        document.querySelectorAll('.feature-card, .step-card, .testimonial-card, .about-content, .stat-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ============ SMOOTH SCROLL ============
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ============ NAVBAR SCROLL EFFECT ============
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 10px 30px -10px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.05)';
+            }
+        });
+
+        // ============ ACTIVE NAV LINK ============
+        const navLinks = document.querySelectorAll('.nav-link');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+    link.classList.remove('active');
+
+    if (link.getAttribute('href').slice(1) === current) {
+        link.classList.add('active');
+    }
+});
+        });
+
+        // ============ COUNTER ANIMATION ============
+        const stats = document.querySelectorAll('.stat-number');
+        let animated = false;
+
+        const animateCounters = () => {
+            if (animated) return;
+            
+            stats.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                let current = 0;
+                const increment = target / 30;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target + '%';
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current) + '%';
+                    }
+                }, 30);
+            });
+            
+            animated = true;
+        };
+
+        // Trigger counter animation when stats section is visible
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            const statsObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(statsSection);
+                }
+            }, { threshold: 0.5 });
+            
+            statsObserver.observe(statsSection);
+        }
+
+        // ============ MODAL FOCUS MANAGEMENT ============
+        const signupModal = document.getElementById('signupModal');
+        if (signupModal) {
+            signupModal.addEventListener('shown.bs.modal', () => {
+    const firstInput = signupModal.querySelector('input:first-of-type');
+    if (firstInput) firstInput.focus();
+});
+        }
+
+        // ============ FORM INTERACTION ============
+        document.querySelectorAll('.form-control, .form-select').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.borderColor = 'var(--primary-color)';
+                this.style.boxShadow = '0 0 0 3px rgba(99, 102, 241, 0.1)';
+            });
+
+            input.addEventListener('blur', function() {
+                this.style.borderColor = 'var(--border-color)';
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // ============ BUTTON RIPPLE EFFECT ============
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mouseenter', function(e) {
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s ease-out';
+                
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                
+                const computedStyle = window.getComputedStyle(this);
+if (computedStyle.position === 'static') {
+    this.style.position = 'relative';
+}
+this.style.overflow = 'hidden';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add ripple animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ============ PERFORMANCE OPTIMIZATION ============
+        // Lazy load images and defer non-critical scripts
+        if ('IntersectionObserver' in window) {
+            const imgObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                    }
+                });
+            });
+
+            document.querySelectorAll('img').forEach(img => {
+                imgObserver.observe(img);
+            });
+        }
+
+        console.log('MindFlow website loaded successfully! 🚀');
+    </script>
+</body>
+</html>

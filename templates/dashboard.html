@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindFlow Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+
+:root{
+    --primary:#6366F1;
+    --secondary:#8B5CF6;
+}
+
+body{
+    background:#f5f7fb;
+    font-family:'Segoe UI',sans-serif;
+}
+
+.sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:260px;
+    height:100vh;
+    background:linear-gradient(180deg,#6366F1,#8B5CF6);
+    padding:30px 20px;
+    color:white;
+    overflow-y:auto;
+}
+
+.sidebar h2{
+    font-weight:700;
+    margin-bottom:40px;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:10px;
+    transition:.3s;
+}
+
+.sidebar a:hover{
+    background:rgba(255,255,255,.15);
+}
+
+.main{
+    margin-left:260px;
+    padding:30px;
+}
+
+.welcome-card{
+    background:linear-gradient(135deg,#6366F1,#8B5CF6);
+    color:white;
+    border-radius:20px;
+    padding:30px;
+    margin-bottom:25px;
+}
+
+.topbar{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+.card-box{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    transition:.3s;
+    height:100%;
+}
+
+.card-box:hover{
+    transform:translateY(-5px);
+}
+
+.icon-box{
+    width:60px;
+    height:60px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:24px;
+    margin-bottom:15px;
+}
+
+.icon1{background:#6366F1;}
+.icon2{background:#8B5CF6;}
+.icon3{background:#10B981;}
+.icon4{background:#F59E0B;}
+
+.progress{
+    height:10px;
+}
+
+.feature-btn{
+    width:100%;
+    margin-top:15px;
+}
+
+@media(max-width:768px){
+
+.sidebar{
+    width:100%;
+    height:auto;
+    position:relative;
+}
+
+.main{
+    margin-left:0;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+
+<h2>
+    <i class="bi bi-heart-pulse"></i>
+    MindFlow
+</h2>
+
+<a href="/dashboard">
+    <i class="bi bi-speedometer2"></i>
+    Dashboard
+</a>
+
+<a href="/mood">
+    <i class="bi bi-emoji-smile"></i>
+    Mood Tracker
+</a>
+
+<a href="/stress-assessment">
+    <i class="bi bi-heart-pulse"></i>
+    Stress Assessment
+</a>
+
+<a href="/chatbot">
+    <i class="bi bi-chat-dots"></i>
+    AI Counsellor
+</a>
+
+<a href="/pomodoro">
+    <i class="bi bi-alarm"></i>
+    Focus Sessions
+</a>
+
+<a href="/mood-history">
+    <i class="bi bi-bar-chart"></i>
+    Mood Analytics
+</a>
+
+<a href="/logout">
+    <i class="bi bi-box-arrow-left"></i>
+    Logout
+</a>
+
+
+</div>
+
+<div class="main">
+
+
+<div class="welcome-card">
+    <h2>Welcome {{ name }} 👋</h2>
+    <p>Your mental health and wellbeing dashboard.</p>
+
+    <a href="/mood" class="btn btn-light">
+        Start Today's Check-In
+    </a>
+</div>
+
+<div class="topbar">
+    <h4>Student Wellness Overview</h4>
+    <p class="text-muted mb-0">
+        Track your mental health progress and stay focused.
+    </p>
+</div>
+
+<div class="row g-4">
+
+    <div class="col-md-6 col-lg-3">
+        <div class="card-box">
+            <div class="icon-box icon1">
+                <i class="bi bi-emoji-smile"></i>
+            </div>
+
+            <h5>Mood Score</h5>
+            <h2>
+            {% if latest_mood %}
+                {{ latest_mood[0] }}
+            {% else %}
+                No Data
+            {% endif %}
+            </h2>
+
+            <div class="progress">
+                <div class="progress-bar bg-primary" style="width:85%"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+        <div class="card-box">
+            <div class="icon-box icon2">
+                <i class="bi bi-heart-pulse"></i>
+            </div>
+
+            <h5>Stress Level</h5>
+
+            <h2>
+                {% if stress %}
+                {{ stress[1] }}
+                {% else %}
+                Not Taken
+                {% endif %}
+            </h2>
+            <p>
+            {% if stress %}
+            Score: {{ stress[0] }}
+            {% endif %}
+            </p>
+
+            <div class="progress">
+                <div class="progress-bar bg-success" style="width:30%"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+        <div class="card-box">
+            <div class="icon-box icon3">
+                <i class="bi bi-alarm"></i>
+            </div>
+
+            <h5>Focus Time</h5>
+            <h2>3.5 hrs</h2>
+
+            <div class="progress">
+                <div class="progress-bar bg-info" style="width:70%"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+        <div class="card-box">
+            <div class="icon-box icon4">
+                <i class="bi bi-award"></i>
+            </div>
+
+            <h5>Wellbeing Score</h5>
+            <h2>92%</h2>
+
+            <div class="progress">
+                <div class="progress-bar bg-warning" style="width:92%"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row mt-4">
+
+    <div class="col-lg-8">
+        <div class="card-box">
+
+            <h4>Today's Activities</h4>
+
+            <ul class="list-group list-group-flush mt-3">
+
+                <li class="list-group-item">
+                    ✅ Mood Check Completed
+                </li>
+
+                <li class="list-group-item">
+                    ✅ Focus Session Completed
+                </li>
+
+                <li class="list-group-item">
+                    ⏳ Stress Assessment Pending
+                </li>
+
+                <li class="list-group-item">
+                    ⏳ AI Counsellor Session
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+
+        <div class="card-box">
+
+            <h4>Quick Actions</h4>
+
+            <div class="d-grid gap-2 mt-3">
+
+                <a href="/mood" class="btn btn-primary">
+                    Mood Tracker
+                </a>
+
+                <a href="/stress-assessment" class="btn btn-success">
+                    Stress Test
+                </a>
+
+                <a href="/pomodoro" class="btn btn-warning">
+                    Start Focus Session
+                </a>
+
+                <a href="/chatbot" class="btn btn-info text-white">
+                    AI Counsellor
+                </a>
+                <a href="/report" class="btn btn-primary">
+                    📊 Wellness Report
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row mt-4">
+
+    <div class="col-md-4">
+        <div class="card-box">
+
+            <h3>😊 Mood Tracker</h3>
+
+            <p>
+                Track your daily emotions and wellbeing.
+            </p>
+
+            <a href="/mood" class="btn btn-primary feature-btn">
+                Open Mood Tracker
+            </a>
+
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card-box">
+
+            <h3>🧠 Stress Assessment</h3>
+
+            <p>
+                Evaluate your current stress level.
+            </p>
+
+            <a href="/stress-assessment" class="btn btn-success feature-btn">
+                Start Test
+            </a>
+
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card-box">
+
+            <h3>📈 Mood Analytics</h3>
+
+            <p>
+                View complete mood history and trends.
+            </p>
+
+            <a href="/mood-history" class="btn btn-dark feature-btn">
+                Open Analytics
+            </a>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="row mt-4">
+
+    <div class="col-md-6">
+        <div class="card-box">
+
+            <h3>🤖 MindFlow AI</h3>
+
+            <p>
+                Talk to your personal wellness assistant.
+            </p>
+
+            <a href="/chatbot" class="btn btn-info text-white feature-btn">
+                Open AI Counsellor
+            </a>
+
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card-box">
+
+            <h3>⏰ Focus Session</h3>
+
+            <p>
+                Stay productive using Pomodoro sessions.
+            </p>
+
+            <a href="/pomodoro" class="btn btn-warning feature-btn">
+                Start Focus Session
+            </a>
+
+        </div>
+    </div>
+
+</div>
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
