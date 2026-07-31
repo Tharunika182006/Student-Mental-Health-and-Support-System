@@ -1,9 +1,1 @@
-Flask
-gunicorn
-mysql-connector-python
-google-generativeai
-python-dotenv
-numpy
-pandas
-scikit-learn
-joblib
+
