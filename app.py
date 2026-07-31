@@ -9,7 +9,7 @@ load_dotenv()
 app = Flask(__name__)
 
 # Secret Key for Session
-app.secret_key = "mindflow_secret_key"
+app.secret_key = os.getenv("SECRET_KEY")
 
 
 # ======================
